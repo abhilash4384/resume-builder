@@ -11,13 +11,6 @@ import { useDropzone } from 'react-dropzone';
 import defaultProfile from '../../assets/profile.jpg';
 import IResume from '../../types/resume-model';
 
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16,
-};
-
 const Sidebar = ({ data }: { data: IResume }) => {
   const [isOpenImageUpload, setIsOpenImageUpload] = useState<boolean>(false);
 
@@ -48,7 +41,7 @@ const Sidebar = ({ data }: { data: IResume }) => {
           <p className="text-title ">Skills</p>
         </div>
 
-        {data.skills.split(',').map((skill: string, index) => {
+        {data.skills.split(',').map((skill: string) => {
           return (
             <div className="row-center py-2" key={skill}>
               <div className="sidebar-void-contact-container" />

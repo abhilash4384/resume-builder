@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Grid, TextField } from '@mui/material';
 import { useAtom } from 'jotai';

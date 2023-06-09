@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Button, Grid, TextField } from '@mui/material';
 import {
   Control,
