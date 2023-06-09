@@ -33,7 +33,7 @@ const Sidebar = ({ data }: { data: IResume }) => {
   return (
     <section className="resume-sidebar-section">
       <div role="button" onClick={() => setIsOpenImageUpload(true)}>
-        <img src={file?.preview ?? defaultProfile} />
+        <img className="progile-img" src={file?.preview ?? defaultProfile} />
       </div>
 
       <div className="my-5">
@@ -54,13 +54,15 @@ const Sidebar = ({ data }: { data: IResume }) => {
       </div>
 
       <div className="sidebar-section-title">
-        <p className="text-title ">Education</p>
+        <p className="text-title">Education</p>
       </div>
 
       {data.education.map((edu, index) => {
         return (
-          <div className="sidebar-section-subtitle " key={index}>
-            <p className="text-title text-italic py-1">{edu.course_name}</p>
+          <div className="sidebar-section-subtitle" key={index}>
+            <p className="text-subtitle text-light-grey text-italic py-1">
+              {edu.course_name}
+            </p>
             <p>
               {edu.start_year} - {edu.end_year}
             </p>
