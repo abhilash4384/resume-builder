@@ -23,7 +23,7 @@ import ExperianceForm from './experiance-form';
 import UserDetailsForm from './user-details-form';
 
 const ResumeForm = () => {
-  const [expanded, setExpanded] = React.useState<string | false>('panel3');
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
   const navigate = useNavigate();
 
   const handleChange =
