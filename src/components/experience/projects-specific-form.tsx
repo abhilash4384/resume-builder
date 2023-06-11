@@ -1,4 +1,5 @@
-import { Button, Grid, TextField } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
+import { Grid, IconButton, TextField, Tooltip } from '@mui/material';
 import { UseFieldArrayRemove } from 'react-hook-form';
 import { IFormFields } from '../../types/resume-model';
 
@@ -63,14 +64,15 @@ const ProjectSpecificForm = ({
         })}
         <Grid item xs={4} className="row-center">
           <div>
-            <Button
-              variant="contained"
-              color="error"
-              type="button"
-              onClick={() => removeProject(projectIndex)}
-            >
-              Remove Project
-            </Button>
+            <Tooltip title="Delete this project">
+              <IconButton
+                aria-label="delete"
+                color="error"
+                onClick={() => removeProject(projectIndex)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
           </div>
         </Grid>
       </Grid>

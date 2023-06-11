@@ -29,7 +29,7 @@ const stepperTitles: Record<number, string> = {
 };
 
 const ResumeForm = () => {
-  const [activeStep, setActiveStep] = React.useState<number | undefined>(1);
+  const [activeStep, setActiveStep] = React.useState<number | undefined>(0);
   const navigate = useNavigate();
 
   const handleChange = (panel: number) => {
@@ -79,7 +79,6 @@ const ResumeForm = () => {
   const ActiveComponent = useMemo(() => {
     return STEPS?.[activeStep];
   }, [activeStep]);
-  console.log(activeStep, ' typeof = ', typeof activeStep);
   return (
     <main className="row-center">
       <section>

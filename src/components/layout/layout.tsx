@@ -10,7 +10,7 @@ function Layout() {
   const nav = useNavigate();
   return (
     <div>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="primary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

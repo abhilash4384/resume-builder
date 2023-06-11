@@ -1,7 +1,16 @@
 // @ts-nocheck
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Grid, TextField } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
+import {
+  Button,
+  Grid,
+  IconButton,
+  SpeedDial,
+  TextField,
+  Tooltip,
+} from '@mui/material';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
@@ -112,57 +121,62 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
 
               <Grid item xs={4} className="row-center" key={`delete-${index}`}>
                 <div>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    type="button"
-                    onClick={() => remove(index)}
-                  >
-                    Remove
-                  </Button>
+                  <Tooltip title="Delete Acedemic Detail">
+                    <IconButton
+                      aria-label="delete"
+                      color="error"
+                      onClick={() => remove(index)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
                 </div>
               </Grid>
             </Grid>
           );
         })}
 
-        <Grid container className="row-center my-2">
-          <div className="mx-2">
-            <Button
-              variant="contained"
-              type="button"
-              color="success"
-              onClick={() =>
-                append({
-                  college: '',
-                  course_name: '',
-                  end_year: NaN,
-                  start_year: NaN,
-                  university: '',
-                })
-              }
-            >
-              Add Education Details
-            </Button>
-          </div>
-        </Grid>
-
         {isAnyEducationFormAvialable && (
-          <Grid container className="row-center mt-5">
+          <Grid container className="row-center my-5">
             <div className="mx-2">
-              <Button variant="contained" type="submit">
-                Submit & Next
+              <Button
+                variant="contained"
+                type="button"
+                onClick={() => setExpanded(0)}
+              >
+                Previous
               </Button>
             </div>
-
             <div className="mx-2">
               <Button variant="contained" type="reset" onClick={() => reset()}>
                 Reset
               </Button>
             </div>
+            <div className="mx-2">
+              <Button variant="contained" type="submit">
+                Submit & Next
+              </Button>
+            </div>
           </Grid>
         )}
       </form>
+
+      <Tooltip title="Add Acedemic Details" placement="left">
+        <SpeedDial
+          ariaLabel="SpeedDial basic example"
+          sx={{ position: 'fixed', bottom: 16, right: 16 }}
+          icon={<SpeedDialIcon />}
+          onClick={() =>
+            append({
+              college: '',
+              course_name: '',
+              end_year: NaN,
+              start_year: NaN,
+              university: '',
+            })
+          }
+        ></SpeedDial>
+      </Tooltip>
     </div>
   );
 };

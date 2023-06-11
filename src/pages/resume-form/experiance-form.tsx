@@ -1,7 +1,9 @@
 // @ts-nocheck
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, SpeedDial, Tooltip } from '@mui/material';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+
 import { useAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
@@ -72,42 +74,48 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
             />
           );
         })}
-        <Grid container className="row-center my-2">
-          <div className="mx-2">
-            <Button
-              variant="contained"
-              type="button"
-              color="success"
-              onClick={() =>
-                append({
-                  company_name: '',
-                  duration: '',
-                  location: '',
-                  projects: [],
-                  role_title: '',
-                })
-              }
-            >
-              Add Experience
-            </Button>
-          </div>
-        </Grid>
+
         {isAnyEducationFormAvialable && (
-          <Grid container className="row-center mt-5">
+          <Grid container className="row-center my-5">
             <div className="mx-2">
-              <Button variant="contained" type="submit">
-                Submit & Next
+              <Button
+                variant="contained"
+                type="button"
+                onClick={() => setExpanded(1)}
+              >
+                Previous
               </Button>
             </div>
-
             <div className="mx-2">
               <Button variant="contained" type="reset" onClick={() => reset()}>
                 Reset
               </Button>
             </div>
+            <div className="mx-2">
+              <Button variant="contained" type="submit">
+                Submit & Next
+              </Button>
+            </div>
           </Grid>
         )}
       </form>
+
+      <Tooltip title="Add Experience" placement="left">
+        <SpeedDial
+          ariaLabel="SpeedDial basic example"
+          sx={{ position: 'fixed', bottom: 16, right: 16 }}
+          icon={<SpeedDialIcon />}
+          onClick={() =>
+            append({
+              company_name: '',
+              duration: '',
+              location: '',
+              projects: [],
+              role_title: '',
+            })
+          }
+        ></SpeedDial>
+      </Tooltip>
     </div>
   );
 };

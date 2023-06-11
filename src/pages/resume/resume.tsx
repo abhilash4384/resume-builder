@@ -1,7 +1,9 @@
-import { Button } from '@mui/material';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import PrintIcon from '@mui/icons-material/Print';
+import SaveIcon from '@mui/icons-material/Save';
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useCallback, useMemo, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import { useReactToPrint } from 'react-to-print';
 import {
   educationDetailsAtomState,
@@ -12,8 +14,12 @@ import defaultResume from './default-resume';
 import LargeSidebar from './large-sidebar';
 import Sidebar from './sidebar';
 
+const actions = [
+  { icon: <FileCopyIcon />, name: 'Download JSON file', key: 1 },
+  { icon: <PrintIcon />, name: 'Print/Download Resume', key: 2 },
+];
+
 const PrintResumeComponent = ({ isPreview }: { isPreview: boolean }) => {
-  const PORTAL_ROOT = document.getElementById('portal-root');
   const componentRef = useRef<any>();
   const handlePrint = useReactToPrint({
     content: () => componentRef?.current,
@@ -59,30 +65,22 @@ const PrintResumeComponent = ({ isPreview }: { isPreview: boolean }) => {
         <LargeSidebar data={isPreview ? defaultResume : resumeDetails} />
       </main>
 
-      {PORTAL_ROOT &&
-        !isPreview &&
-        ReactDOM.createPortal(
-          <div>
-            <Button
-              variant="contained"
-              color="success"
-              onClick={handlePrint}
-              sx={{
-                marginX: 2,
-              }}
-            >
-              Print Resume
-            </Button>
-            <Button
-              variant="contained"
-              color="success"
-              onClick={createJSONFile}
-            >
-              Download JSON Content
-            </Button>
-          </div>,
-          PORTAL_ROOT as HTMLElement
-        )}
+      <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        icon={<SpeedDialIcon icon={<SaveIcon />} />}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={() =>
+              action.key === 1 ? createJSONFile() : handlePrint()
+            }
+          />
+        ))}
+      </SpeedDial>
     </div>
   );
 };

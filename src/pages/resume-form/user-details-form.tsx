@@ -105,14 +105,13 @@ const UserDetailsForm = ({ setExpanded }: { setExpanded: any }) => {
         </Grid>
         <Grid container className="row-center mt-5">
           <div className="mx-2">
-            <Button variant="contained" type="submit">
-              Submit & Next
-            </Button>
-          </div>
-
-          <div className="mx-2">
             <Button variant="contained" type="reset" onClick={() => reset()}>
               Reset
+            </Button>
+          </div>
+          <div className="mx-2">
+            <Button variant="contained" type="submit">
+              Submit & Next
             </Button>
           </div>
         </Grid>

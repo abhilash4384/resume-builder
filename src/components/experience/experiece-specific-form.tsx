@@ -1,6 +1,8 @@
 // @ts-nocheck
 
-import { Button, Grid, TextField } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
+import { Button, Grid, IconButton, TextField, Tooltip } from '@mui/material';
+
 import {
   Control,
   UseFormGetValues,
@@ -72,6 +74,16 @@ const ExperienceSpecificForm = ({
     >
       <Grid item xs={12} className="row-center">
         <p className="text-large">Experience Details - {index + 1}</p>
+        <Tooltip title="Remove Experience">
+          <IconButton
+            aria-label="delete"
+            color="error"
+            onClick={() => remove(index)}
+            sx={{ paddingTop: 1 }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
       </Grid>
       {experienceFormFields.map(({ fieldLable, fieldName }, i) => {
         const maidenFieldName = `experiance.${index}.${fieldName}`;
@@ -120,7 +132,7 @@ const ExperienceSpecificForm = ({
         <div className="mx-2">
           <Button
             variant="contained"
-            color="success"
+            color="info"
             type="button"
             onClick={() => {
               appendProject({
@@ -132,17 +144,7 @@ const ExperienceSpecificForm = ({
               });
             }}
           >
-            Add Project
-          </Button>
-        </div>
-        <div className="mx-2">
-          <Button
-            variant="contained"
-            color="error"
-            type="button"
-            onClick={() => remove(index)}
-          >
-            Remove Experience
+            Add Project to this Experience
           </Button>
         </div>
       </Grid>
