@@ -54,7 +54,7 @@ const Sidebar = ({ data }: { data: IResume }) => {
       </div>
 
       <div className="sidebar-section-title">
-        <p className="text-title">Education</p>
+        <p className="text-title text-white">Education</p>
       </div>
 
       {data.education.map((edu, index) => {

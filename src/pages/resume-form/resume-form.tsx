@@ -73,10 +73,6 @@ const ResumeForm = () => {
   return (
     <main className="row-center">
       <section>
-        <div className="row-center">
-          <p className="text-title"> Create Resume Form</p>
-        </div>
-
         <div className="mt-5">
           <Accordion
             expanded={expanded === 'panel1'}
@@ -126,7 +122,11 @@ const ResumeForm = () => {
           </Accordion>
         </div>
         <div className="my-5 row-center">
-          <Button variant="contained" onClick={generateResumeHandler}>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={generateResumeHandler}
+          >
             Validate Form & Generate Resume
           </Button>
         </div>

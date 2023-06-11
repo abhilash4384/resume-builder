@@ -8,9 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build && cp -r src/fonts dist/",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -18,7 +16,6 @@
     "@hookform/resolvers": "^3.1.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.4",
-    "gh-pages": "^5.0.0",
     "jotai": "^2.1.1",
     "jotai-devtools": "^0.5.3",
     "react": "^18.2.0",
