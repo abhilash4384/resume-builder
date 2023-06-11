@@ -1,14 +1,8 @@
 // @ts-nocheck
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
-} from '@mui/material';
+import { Step, StepLabel, Stepper } from '@mui/material';
 import { useAtom } from 'jotai';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import educationSchema from '../../schemas/education.schema';
 import experienceSchema from '../../schemas/experience.schema';
@@ -22,14 +16,25 @@ import EducationForm from './education-form';
 import ExperianceForm from './experiance-form';
 import UserDetailsForm from './user-details-form';
 
+const STEPS: Record<number, React.Component> = {
+  0: UserDetailsForm,
+  1: EducationForm,
+  2: ExperianceForm,
+};
+
+const stepperTitles: Record<number, string> = {
+  0: 'User Details',
+  1: 'Acedemic Details',
+  2: 'Experiece Details',
+};
+
 const ResumeForm = () => {
-  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+  const [activeStep, setActiveStep] = React.useState<number | undefined>(1);
   const navigate = useNavigate();
 
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+  const handleChange = (panel: number) => {
+    setActiveStep(panel ?? undefined);
+  };
 
   const [experienceData] = useAtom(experienceDetailsAtomState);
   const [educationData] = useAtom(educationDetailsAtomState);
@@ -50,7 +55,7 @@ const ResumeForm = () => {
               })
               .catch((e) => {
                 console.log(e);
-                setExpanded('panel3');
+                setActiveStep(3);
                 alert('Experience details form is invalid!');
                 return;
               });
@@ -58,70 +63,56 @@ const ResumeForm = () => {
           })
           .catch((e) => {
             console.log(e);
-            setExpanded('panel2');
+            setActiveStep(2);
             alert('Education details form is invalid!');
             return;
           });
       })
       .catch((e) => {
         console.log(e);
-        setExpanded('panel1');
+        setActiveStep(1);
         alert('User details form is invalid!');
         return;
       });
   }, [educationData, experienceData, navigate, userData]);
+
+  const ActiveComponent = useMemo(() => {
+    return STEPS?.[activeStep];
+  }, [activeStep]);
+  console.log(activeStep, ' typeof = ', typeof activeStep);
   return (
     <main className="row-center">
       <section>
         <div className="mt-5">
-          <Accordion
-            expanded={expanded === 'panel1'}
-            onChange={handleChange('panel1')}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <p className="text-grey text-title">User Details</p>
-            </AccordionSummary>
-            <AccordionDetails>
-              <UserDetailsForm setExpanded={setExpanded} />
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === 'panel2'}
-            onChange={handleChange('panel2')}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <p className="text-grey text-title">Acedemic</p>
-            </AccordionSummary>
-            <AccordionDetails>
-              <EducationForm setExpanded={setExpanded} />
-            </AccordionDetails>
-          </Accordion>
-
-          <Accordion
-            expanded={expanded === 'panel3'}
-            onChange={handleChange('panel3')}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3a-content"
-              id="panel3a-header"
-            >
-              <p className="text-grey text-title">Experience Details</p>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ExperianceForm setExpanded={setExpanded} />
-            </AccordionDetails>
-          </Accordion>
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {Object.keys(STEPS).map((stepKey, index) => (
+              <Step key={stepKey}>
+                <div
+                  role="button"
+                  onClick={() => {
+                    setActiveStep(index);
+                  }}
+                >
+                  <StepLabel>{stepperTitles[stepKey]}</StepLabel>
+                </div>
+              </Step>
+            ))}
+          </Stepper>
+          <div>
+            {ActiveComponent && (
+              <ActiveComponent
+                setExpanded={(step) => {
+                  if (step === 4) {
+                    generateResumeHandler();
+                  } else {
+                    setActiveStep(step);
+                  }
+                }}
+              />
+            )}
+          </div>
         </div>
-        <div className="my-5 row-center">
+        {/* <div className="my-5 row-center">
           <Button
             color="secondary"
             variant="contained"
@@ -129,7 +120,7 @@ const ResumeForm = () => {
           >
             Validate Form & Generate Resume
           </Button>
-        </div>
+        </div> */}
       </section>
     </main>
   );

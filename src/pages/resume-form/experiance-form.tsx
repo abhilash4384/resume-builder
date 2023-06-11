@@ -42,7 +42,7 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
 
   const onSubmit: SubmitHandler<IExperienceFields> = (data) => {
     setExperienceDetails(data);
-    setExpanded(false);
+    setExpanded(4);
   };
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
           <Grid container className="row-center mt-5">
             <div className="mx-2">
               <Button variant="contained" type="submit">
-                Submit
+                Submit & Next
               </Button>
             </div>
 

@@ -56,12 +56,12 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
 
   const onSubmit: SubmitHandler<IEducationFields> = (data) => {
     setEducationDetailsState(data);
+    setExpanded(2);
   };
 
   useEffect(() => {
     reset(educationDetailsState);
-    setExpanded('panel3');
-  }, [reset, educationDetailsState]);
+  }, [reset, educationDetailsState, setExpanded]);
 
   const isAnyEducationFormAvialable = useMemo(
     () => (controlledFields.length > 0 ? true : false),
@@ -151,7 +151,7 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
           <Grid container className="row-center mt-5">
             <div className="mx-2">
               <Button variant="contained" type="submit">
-                Submit
+                Submit & Next
               </Button>
             </div>
 

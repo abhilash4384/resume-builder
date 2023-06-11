@@ -68,15 +68,18 @@ const UserDetailsForm = ({ setExpanded }: { setExpanded: any }) => {
   });
   const onSubmit: SubmitHandler<IUserFields> = (data) => {
     setUserDetailsState(data);
+    setExpanded(1);
   };
 
   useEffect(() => {
     reset(userDetailsState);
-    setExpanded('panel2');
-  }, [reset, setExpanded, userDetailsState]);
+  }, [reset, userDetailsState]);
 
   return (
     <div className="mt-5">
+      <Grid item xs={12} className="row-center">
+        <p className="text-large">User Details</p>
+      </Grid>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2} className="row-center">
           {userDetailsFormFields.map((field) => (
@@ -103,7 +106,7 @@ const UserDetailsForm = ({ setExpanded }: { setExpanded: any }) => {
         <Grid container className="row-center mt-5">
           <div className="mx-2">
             <Button variant="contained" type="submit">
-              Submit
+              Submit & Next
             </Button>
           </div>
 
