@@ -169,3 +169,9 @@ img {
 .resume-sidebar-section p {
   @extend .text-light-grey;
 }
+
+@media (max-width: 768px) {
+  .resume-container {
+    display: none;
+  }
+}

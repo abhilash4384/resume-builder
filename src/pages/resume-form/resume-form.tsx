@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Hidden,
   Step,
   StepLabel,
   Stepper,
@@ -169,14 +170,17 @@ const ResumeForm = () => {
       </section>
       {portalPoint &&
         ReactDOM.createPortal(
-          <Button
-            variant="contained"
-            color="primary"
-            title="Fill the form from JSON file"
-            onClick={() => setIsOpenImageUpload(true)}
-          >
-            Import from JSON
-          </Button>,
+          <>
+            <Button
+              variant="contained"
+              color="primary"
+              title="Fill the form from JSON file"
+              onClick={() => setIsOpenImageUpload(true)}
+            >
+              <Hidden smDown>Import from JSON</Hidden>
+              <Hidden smUp>Import</Hidden>
+            </Button>
+          </>,
           portalPoint
         )}
 

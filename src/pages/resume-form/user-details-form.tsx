@@ -83,7 +83,14 @@ const UserDetailsForm = ({ setExpanded }: { setExpanded: any }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2} className="row-center">
           {userDetailsFormFields.map((field) => (
-            <Grid key={field.fieldName} item xs={4} className="row-center">
+            <Grid
+              key={field.fieldName}
+              item
+              xs={12}
+              md={4}
+              sm={6}
+              className="row-center"
+            >
               <div>
                 <p className="pl-1 text-bold text-grey">{field.fieldLable}</p>
                 <TextField

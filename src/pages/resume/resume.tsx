@@ -24,7 +24,6 @@ const PrintResumeComponent = ({ isPreview }: { isPreview: boolean }) => {
   const handlePrint = useReactToPrint({
     content: () => componentRef?.current,
   });
-
   const [experienceData] = useAtom(experienceDetailsAtomState);
   const [educationData] = useAtom(educationDetailsAtomState);
   const [userData] = useAtom(userDetailsAtomState);

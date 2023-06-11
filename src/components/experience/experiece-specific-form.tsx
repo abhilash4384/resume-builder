@@ -62,7 +62,6 @@ const ExperienceSpecificForm = ({
   } = useFieldArray({
     control,
     name: `experiance.${index}.projects`,
-    // name: `test[${nestIndex}].nestedArray`
   });
 
   return (
@@ -105,7 +104,9 @@ const ExperienceSpecificForm = ({
           return (
             <Grid
               item
-              xs={4}
+              xs={12}
+              sm={6}
+              md={4}
               className="row-center"
               key={`${fieldName}-${index}-${i}`}
             >
@@ -128,7 +129,7 @@ const ExperienceSpecificForm = ({
         }
       })}
 
-      <Grid item xs={4} className="row-center" key={`delete-${index}`}>
+      <Grid item xs={12} className="row-center" key={`add-project-${index}`}>
         <div className="mx-2">
           <Button
             variant="contained"

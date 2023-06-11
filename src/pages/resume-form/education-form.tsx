@@ -97,7 +97,9 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
                 return (
                   <Grid
                     item
-                    xs={4}
+                    xs={12}
+                    sm={6}
+                    md={4}
                     className="row-center"
                     key={`${fieldName}-${index}-${i}`}
                   >
@@ -138,7 +140,7 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
 
         {isAnyEducationFormAvialable && (
           <Grid container className="row-center my-5">
-            <div className="mx-2">
+            <div className="m-2">
               <Button
                 variant="contained"
                 type="button"
@@ -147,12 +149,12 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
                 Previous
               </Button>
             </div>
-            <div className="mx-2">
+            <div className="m-2">
               <Button variant="contained" type="reset" onClick={() => reset()}>
                 Reset
               </Button>
             </div>
-            <div className="mx-2">
+            <div className="m-2">
               <Button variant="contained" type="submit">
                 Submit & Next
               </Button>

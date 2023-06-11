@@ -77,7 +77,7 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
 
         {isAnyEducationFormAvialable && (
           <Grid container className="row-center my-5">
-            <div className="mx-2">
+            <div className="m-2">
               <Button
                 variant="contained"
                 type="button"
@@ -86,12 +86,12 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
                 Previous
               </Button>
             </div>
-            <div className="mx-2">
+            <div className="m-2">
               <Button variant="contained" type="reset" onClick={() => reset()}>
                 Reset
               </Button>
             </div>
-            <div className="mx-2">
+            <div className="m-2">
               <Button variant="contained" type="submit">
                 Submit & Next
               </Button>

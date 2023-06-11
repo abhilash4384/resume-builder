@@ -39,7 +39,9 @@ const ProjectSpecificForm = ({
           return (
             <Grid
               item
-              xs={4}
+              xs={12}
+              sm={6}
+              md={4}
               className="row-center"
               key={`${fieldName}-${parentIndex}-${i}`}
             >
@@ -62,7 +64,7 @@ const ProjectSpecificForm = ({
             </Grid>
           );
         })}
-        <Grid item xs={4} className="row-center">
+        <Grid item xs={12} sm={4} className="row-center">
           <div>
             <Tooltip title="Delete this project">
               <IconButton
