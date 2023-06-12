@@ -7,3 +7,35 @@ The app I've developed is primarily targeted towards software engineers and offe
 <center>
 <img src="./walkthrough.gif" height="300" width="500">
 </center>
+
+## Live Preview
+
+Try out generating your own resume on
+<a href="https://master--gleeful-figolla-2abbff.netlify.app/">this</a> link.
+
+## Features
+
+- Fill the form and download resume in pdf format(make sure while to select print destination Save as PDF insted of Microsoft print to PDF, otherwise the resume hyperlinks will not work)
+- Fill the form and download JSON file containing all the infomration previously filled in the form
+- Import this `.json` file to autofill form
+- On the resume page user can click on the image and upload new image (this feature only works on desktop website as for mobile screen no preview option is available)
+
+### Install Dependecies
+
+    yarn
+
+### Run App
+
+    yarn dev
+
+### Build App
+
+    yarn build
+
+### Run Build Preview
+
+    yarn preview
+
+## Tech Stack
+
+    React 18, jotai, react hook form, yup, material UI, SASS/SCSS, react-to-print, typescript
