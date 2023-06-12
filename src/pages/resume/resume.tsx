@@ -83,7 +83,7 @@ const PrintResumeComponent = ({ isPreview }: { isPreview: boolean }) => {
             </div>
 
             <Typography variant="h6" align="center" color="GrayText">
-              Download below JSON file and later import it to autofill the form
+              Download JSON file and later import it to autofill the form
             </Typography>
             <div className="row-center my-2">
               <Button
