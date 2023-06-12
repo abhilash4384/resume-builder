@@ -121,19 +121,26 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
                 );
               })}
 
-              <Grid item xs={4} className="row-center" key={`delete-${index}`}>
-                <div>
-                  <Tooltip title="Delete Acedemic Detail">
-                    <IconButton
-                      aria-label="delete"
-                      color="error"
-                      onClick={() => remove(index)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Tooltip>
-                </div>
-              </Grid>
+              {controlledFields.length > 1 && (
+                <Grid
+                  item
+                  xs={4}
+                  className="row-center"
+                  key={`delete-${index}`}
+                >
+                  <div>
+                    <Tooltip title="Delete Acedemic Detail">
+                      <IconButton
+                        aria-label="delete"
+                        color="error"
+                        onClick={() => remove(index)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </div>
+                </Grid>
+              )}
             </Grid>
           );
         })}
@@ -172,8 +179,8 @@ const EducationForm = ({ setExpanded }: { setExpanded: any }) => {
             append({
               college: '',
               course_name: '',
-              end_year: NaN,
-              start_year: NaN,
+              end_year: 2016,
+              start_year: 2013,
               university: '',
             })
           }

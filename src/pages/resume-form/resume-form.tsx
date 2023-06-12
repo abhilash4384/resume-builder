@@ -97,39 +97,34 @@ const ResumeForm = () => {
   });
 
   const generateResumeHandler = useCallback(async () => {
-    userValidationSchema
-      .validate(userData)
-      .then(() => {
-        educationSchema
-          .validate(educationData)
-          .then(() => {
-            //start exp
-            experienceSchema
-              .validate(experienceData)
-              .then(() => {
-                navigate('/resume');
-              })
-              .catch((e) => {
-                console.log(e);
-                setActiveStep(3);
-                alert('Experience details form is invalid!');
-                return;
-              });
-            //end exp
-          })
-          .catch((e) => {
-            console.log(e);
-            setActiveStep(2);
-            alert('Education details form is invalid!');
-            return;
-          });
-      })
-      .catch((e) => {
-        console.log(e);
-        setActiveStep(1);
-        alert('User details form is invalid!');
-        return;
-      });
+    const isUserFormValid = await userValidationSchema.isValid(userData);
+    if (!isUserFormValid) {
+      alert('Please fill all the required user details!');
+      setActiveStep(0);
+      return;
+    }
+    const isEducationFromValid = await educationSchema.isValid(educationData);
+    if (!isEducationFromValid) {
+      alert('Please fill all the required education details!');
+      setActiveStep(1);
+      return;
+    }
+    const isExperienceFromValid = await experienceSchema.isValid(
+      experienceData
+    );
+    if (!isExperienceFromValid) {
+      // experienceSchema
+      //   .validate(experienceData)
+      //   .then(() => console.log('this time worked'))
+      //   .catch((e) => {
+      //     debugger;
+      //     console.log('error in experience form = ', e);
+      //   });
+      alert('Please fill all the required experience details!');
+      setActiveStep(2);
+      return;
+    }
+    navigate('/resume');
   }, [educationData, experienceData, navigate, userData]);
 
   const ActiveComponent = useMemo(() => {

@@ -27,8 +27,8 @@ export const educationDetailsInitialState: IEducationFields = {
     {
       college: '',
       course_name: '',
-      end_year: NaN,
-      start_year: NaN,
+      end_year: 2016,
+      start_year: 2013,
       university: '',
     },
   ],
@@ -44,7 +44,15 @@ export const experienceDetailsInitialState: IExperienceFields = {
       company_name: '',
       duration: '',
       location: '',
-      projects: [],
+      projects: [
+        {
+          project_description: '',
+          project_name: '',
+          technologies_used: '',
+          project_link: '',
+          project_link_title: '',
+        },
+      ],
       role_title: '',
     },
   ],

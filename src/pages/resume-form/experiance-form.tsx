@@ -23,13 +23,11 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
     watch,
     control,
     formState: { errors },
-    setValue,
-    getValues,
   } = useForm<IExperienceFields>({
     resolver: yupResolver(experienceSchema),
   });
 
-  const { fields, append, remove, update } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'experiance',
   });
@@ -69,8 +67,7 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
               remove={remove}
               control={control}
               projects={field.projects}
-              setValue={setValue}
-              getValues={getValues}
+              canDeleteExperience={controlledFields.lenght > 1}
             />
           );
         })}
@@ -110,7 +107,15 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
               company_name: '',
               duration: '',
               location: '',
-              projects: [],
+              projects: [
+                {
+                  project_description: '',
+                  project_name: '',
+                  technologies_used: '',
+                  project_link: '',
+                  project_link_title: '',
+                },
+              ],
               role_title: '',
             })
           }

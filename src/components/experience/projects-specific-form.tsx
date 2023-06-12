@@ -10,6 +10,7 @@ type IProjectSpecificProps = {
   projectIndex: number;
   maidenFieldName: string;
   removeProject: UseFieldArrayRemove;
+  canDeleteProject: boolean;
 };
 const projectFormFields: IFormFields[] = [
   { fieldLable: 'Project Name', fieldName: 'project_name' },
@@ -26,6 +27,7 @@ const ProjectSpecificForm = ({
   projectIndex,
   maidenFieldName,
   removeProject,
+  canDeleteProject,
 }: IProjectSpecificProps) => {
   return (
     <>
@@ -64,19 +66,21 @@ const ProjectSpecificForm = ({
             </Grid>
           );
         })}
-        <Grid item xs={12} sm={4} className="row-center">
-          <div>
-            <Tooltip title="Delete this project">
-              <IconButton
-                aria-label="delete"
-                color="error"
-                onClick={() => removeProject(projectIndex)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-          </div>
-        </Grid>
+        {canDeleteProject && (
+          <Grid item xs={12} sm={4} className="row-center">
+            <div>
+              <Tooltip title="Delete this project">
+                <IconButton
+                  aria-label="delete"
+                  color="error"
+                  onClick={() => removeProject(projectIndex)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </div>
+          </Grid>
+        )}
       </Grid>
     </>
   );

@@ -3,12 +3,7 @@
 import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
 import { Button, Grid, IconButton, TextField, Tooltip } from '@mui/material';
 
-import {
-  Control,
-  UseFormGetValues,
-  UseFormSetValue,
-  useFieldArray,
-} from 'react-hook-form';
+import { Control, useFieldArray } from 'react-hook-form';
 import {
   IExperienceFields,
   IFormFields,
@@ -41,8 +36,7 @@ type IExperienceProps = {
   remove: (index?: number | number[] | undefined) => void;
   projects: IProjects[];
   control: Control<IExperienceFields, any>;
-  getValues: UseFormGetValues<IExperienceFields>;
-  setValue: UseFormSetValue<IExperienceFields>;
+  canDeleteExperience: boolean;
 };
 
 const ExperienceSpecificForm = ({
@@ -52,14 +46,9 @@ const ExperienceSpecificForm = ({
   remove,
   projects,
   control,
-  setValue,
-  getValues,
+  canDeleteExperience,
 }: IExperienceProps) => {
-  const {
-    fields: projectFields,
-    remove: removeProject,
-    append: appendProject,
-  } = useFieldArray({
+  const { remove: removeProject, append: appendProject } = useFieldArray({
     control,
     name: `experiance.${index}.projects`,
   });
@@ -73,16 +62,18 @@ const ExperienceSpecificForm = ({
     >
       <Grid item xs={12} className="row-center">
         <p className="text-large">Experience Details - {index + 1}</p>
-        <Tooltip title="Remove Experience">
-          <IconButton
-            aria-label="delete"
-            color="error"
-            onClick={() => remove(index)}
-            sx={{ paddingTop: 1 }}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        {canDeleteExperience && (
+          <Tooltip title="Remove Experience">
+            <IconButton
+              aria-label="delete"
+              color="error"
+              onClick={() => remove(index)}
+              sx={{ paddingTop: 1 }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        )}
       </Grid>
       {experienceFormFields.map(({ fieldLable, fieldName }, i) => {
         const maidenFieldName = `experiance.${index}.${fieldName}`;
@@ -97,6 +88,7 @@ const ExperienceSpecificForm = ({
                 projectIndex={pIndex}
                 maidenFieldName={`experiance.${index}.projects`}
                 removeProject={removeProject}
+                canDeleteProject={projects.length > 1}
               />
             );
           });
