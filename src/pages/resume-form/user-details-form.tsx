@@ -110,7 +110,7 @@ const UserDetailsForm = ({ setExpanded }: { setExpanded: any }) => {
             </Grid>
           ))}
         </Grid>
-        <Grid container className="row-center mt-5">
+        <Grid container className="row-center my-5">
           <div className="mx-2">
             <Button variant="contained" type="reset" onClick={() => reset()}>
               Reset

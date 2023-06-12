@@ -2,6 +2,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import PrintIcon from '@mui/icons-material/Print';
 import SaveIcon from '@mui/icons-material/Save';
 import {
+  Button,
   Hidden,
   SpeedDial,
   SpeedDialAction,
@@ -71,10 +72,29 @@ const PrintResumeComponent = ({ isPreview }: { isPreview: boolean }) => {
       </main>
       <Hidden mdUp>
         <div className="row-center h-full">
-          <Typography variant="h5" align="center" color="ActiveBorder">
-            Click on the Floating button (in the bottom right) to download
-            Resume
-          </Typography>
+          <div>
+            <Typography variant="h6" align="center" color="GrayText">
+              You are resume is ready to download
+            </Typography>
+            <div className="row-center mt-2 mb-5">
+              <Button variant="contained" color="primary" onClick={handlePrint}>
+                Dowanload PDF
+              </Button>
+            </div>
+
+            <Typography variant="h6" align="center" color="GrayText">
+              Download below JSON file and later import it to autofill the form
+            </Typography>
+            <div className="row-center my-2">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={createJSONFile}
+              >
+                Dowanload JSON
+              </Button>
+            </div>
+          </div>
         </div>
       </Hidden>
 
