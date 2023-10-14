@@ -9,7 +9,7 @@ import userValidationSchema from '../../schemas/user-details.schema';
 import { userDetailsAtomState } from '../../store/app-atoms';
 import { IFormFields, IUserFields } from '../../types/resume-model';
 
-const userDetailsFormFields: IFormFields[] = [
+const USER_DETAILS_FORM_FIELDS: IFormFields[] = [
   { fieldLable: 'Name', fieldName: 'name' },
   { fieldLable: 'Title', fieldName: 'title' },
   {
@@ -36,7 +36,7 @@ const userDetailsFormFields: IFormFields[] = [
     optionalErrorFieldName: 'linked_in_profile',
   },
   {
-    fieldLable: 'Portfolio Link',
+    fieldLable: 'Github Portfolio',
     fieldName: 'personal_details.portfolio_link',
     optionalErrorFieldName: 'portfolio_link',
   },
@@ -82,7 +82,7 @@ const UserDetailsForm = ({ setExpanded }: { setExpanded: any }) => {
       </Grid>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2} className="row-center">
-          {userDetailsFormFields.map((field) => (
+          {USER_DETAILS_FORM_FIELDS.map((field) => (
             <Grid
               key={field.fieldName}
               item

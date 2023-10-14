@@ -22,14 +22,16 @@ const LargeSidebar = ({ data }: { data: IResume }) => {
             </p>
             <p className="text-primary text-italic  ml-6">
               <a href={data.personal_details.linked_in_profile} target="_blank">
-                {' '}
-                LinkedIn{' '}
+                {data.personal_details.linked_in_profile.replace(
+                  'https://',
+                  ''
+                )}
               </a>
             </p>
             {data?.personal_details?.portfolio_link && (
               <p className="text-primary text-italic  ml-6">
                 <a href={data.personal_details.portfolio_link} target="_blank">
-                  Portfolio{' '}
+                  {data.personal_details.portfolio_link.replace('https://', '')}
                 </a>
               </p>
             )}

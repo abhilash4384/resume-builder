@@ -7,6 +7,7 @@ $white: #ffffff;
 $black: #000000;
 $grey: #808080;
 $error: rgb(211, 47, 47);
+$material-blue: #1976d2;
 
 $colors: (
   primary: #212026,
@@ -16,6 +17,7 @@ $colors: (
   white: #ffffff,
   black: #000000,
   grey: #808080,
+  material-blue: #1976d2,
   error: rgb(211, 47, 47),
 );
 
@@ -153,4 +155,8 @@ $size-15: 10rem;
   .text-#{$name} {
     color: $value;
   }
+}
+
+a {
+  color: $material-blue;
 }
