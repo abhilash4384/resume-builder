@@ -67,7 +67,7 @@ const ExperienceForm = ({ setExpanded }: { setExpanded: any }) => {
               remove={remove}
               control={control}
               projects={field.projects}
-              canDeleteExperience={controlledFields.lenght > 1}
+              canDeleteExperience={controlledFields.length > 1}
             />
           );
         })}
